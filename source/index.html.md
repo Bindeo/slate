@@ -1,14 +1,13 @@
 ---
-title: API Reference
+title: Bindeo API reference
 
 language_tabs:
   - shell
-  - ruby
+  - php
   - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='mailto:info@bindeo.com'>Need help? contact us!</a>
 
 includes:
   - errors
@@ -18,151 +17,184 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Bindeo provides a RESTful API to easily integrate our services in your systems. Using this documentation you will be able to access al described resources from our application.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+We have language bindings in Shell, Php, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
-> To authorize, use this code:
+Bindeo uses OAuth2 to authorize your requests using temporary tokens. Only previously authorized clients can grant access to our resources. 
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+If you already have your `client_id` and `client_secret` you could obtain your token. In first place you need to ask for a new token or refresh your old one if it has expired.
+To get your fresh token you have to send a **POST** request to `https://api.bindeo.com/access_token` with your client credentials.
+Then you will can call our resources including the header `Authorization: Bearer YOURTOKEN` in each request.
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>YOURTOKEN</code> with your personal token.
 </aside>
 
-# Kittens
+## Authenticate with Client Credentials Grant
 
-## Get All Kittens
+> To authorize, use this code:
 
-```ruby
-require 'kittn'
+```php
+<?php
+$curl = curl_init();
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://api.bindeo.com/access_token",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => "{\"grant_type\":\"client_credentials\",\"client_id\":\"YOUR CLIENT ID\",\"client_secret\":\"YOUR CLIENT SECRET\"}",
+  CURLOPT_HTTPHEADER => array(
+    "content-type: application/json"
+  ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
 ```
 
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+url = "https://api.bindeo.com/access_token"
+
+payload = "{\"grant_type\":\"client_credentials\",\"client_id\":\"YOUR CLIENT ID\",\"client_secret\":\"YOUR CLIENT SECRET\"}"
+headers = {
+    'content-type': "application/json"
+    }
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
 ```
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl --request POST \
+  --url https://api.bindeo.com/access_token \
+  --header 'content-type: application/json' \
+  --data '{"grant_type":"client_credentials","client_id":"YOUR CLIENT ID","client_secret":"YOUR CLIENT SECRET"}'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImRkYjgwZTE5OTI3ZWNmMzAzMDhhMWU2NzgzZTQwYzQ0MWI5YzM1ZTJiODhiNGUxYmQxMjI2ZjM0MmU0N2U5OGE1YmJkYmY1YjlmOTE5ZmQ0In0.eyJhdWQiOiIyIiwianRpIjoiZGRiODBlMTk5MjdlY2YzMDMwOGExZTY3ODNlNDBjNDQxYjljMzVlMmI4OGI0ZTFiZDEyMjZmMzQyZTQ3ZTk4YTViYmRiZjViOWY5MTlmZDQiLCJpYXQiOjE0NTkyNjczMzEsIm5iZiI6MTQ1OTI2NzMzMSwiZXhwIjoxNDU5MjcwOTMxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.xUzC2WOa8vMoxmB0l-xMq1uOeZ6-SY1qmJDDRShawJM_zP-jDKgAQnobYEeXdW5d98pbCpt3LSYzRF8SMgKRjgMHjZuDpT0IHVr3fRVrt_1qnaNxcqQRj2lO_feZ0ygnIsVwM9q1OTcNzB-FcfCDn9Kao565CyyLwftJU4Q6maY"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This grant is suitable for machine-to-machine authentication. There is not a logged user accessing the system.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+### HTTP REQUEST
 
-### HTTP Request
+`POST https://api.bindeo.com/access_token`
 
-`GET http://example.com/kittens/<ID>`
+### ARGUMENTS
 
-### URL Parameters
+Parameter | Type | Required | Description
+-------------- | -------------- | -------------- | --------------
+**grant_type** | string | Required | String `client_credentials`
+**client_id** | string | Required | Your client id
+**client_secret** | string | Required | Your client secret
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+## Authenticate with Password Grant
+
+> To authorize, use this code:
+
+```php
+<?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://api.bindeo.com/access_token",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "POST",
+  CURLOPT_POSTFIELDS => "{\"grant_type\":\"password\",\"client_id\":\"YOUR CLIENT ID\",\"client_secret\":\"YOUR CLIENT SECRET\",\"username\":\"USERNAME\",\"password\":\"USER PASSWORD\"}",
+  CURLOPT_HTTPHEADER => array(
+    "content-type: application/json"
+  ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+```python
+import requests
+
+url = "https://api.bindeo.com/access_token"
+
+payload = "{\"grant_type\":\"password\",\"client_id\":\"YOUR CLIENT ID\",\"client_secret\":\"YOUR CLIENT SECRET\",\"username\":\"USERNAME\",\"password\":\"USER PASSWORD\"}"
+headers = {
+    'content-type': "application/json"
+    }
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+```shell
+curl --request POST \
+  --url https://api.bindeo.com/access_token \
+  --header 'content-type: application/json' \
+  --data '{"grant_type":"password","client_id":"YOUR CLIENT ID","client_secret":"YOUR CLIENT SECRET","username":"USERNAME","password":"USER PASSWORD"}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImRkYjgwZTE5OTI3ZWNmMzAzMDhhMWU2NzgzZTQwYzQ0MWI5YzM1ZTJiODhiNGUxYmQxMjI2ZjM0MmU0N2U5OGE1YmJkYmY1YjlmOTE5ZmQ0In0.eyJhdWQiOiIyIiwianRpIjoiZGRiODBlMTk5MjdlY2YzMDMwOGExZTY3ODNlNDBjNDQxYjljMzVlMmI4OGI0ZTFiZDEyMjZmMzQyZTQ3ZTk4YTViYmRiZjViOWY5MTlmZDQiLCJpYXQiOjE0NTkyNjczMzEsIm5iZiI6MTQ1OTI2NzMzMSwiZXhwIjoxNDU5MjcwOTMxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.xUzC2WOa8vMoxmB0l-xMq1uOeZ6-SY1qmJDDRShawJM_zP-jDKgAQnobYEeXdW5d98pbCpt3LSYzRF8SMgKRjgMHjZuDpT0IHVr3fRVrt_1qnaNxcqQRj2lO_feZ0ygnIsVwM9q1OTcNzB-FcfCDn9Kao565CyyLwftJU4Q6maY",
+    "refresh_token": "XR4TTCoT2xGPJ\/6MwBcByb9j3ILlY8wVnmxcm+NA9N6JGSfGHOt4H7EQ3Xxv83u5Qtkf7SzkfSj3E1RoxKtku7VP1NIg5A\/RIU854gUP24uywGkt9\/LDsXq2nI+UA2KOywuPTdWi0EDmd+2UetrY2XOZ4uHEjiCdYI2CTm2sPxmqVOFYMCFy7MdsGRNWbgQFzhcyvwFEkKQ7CiVJL6sRLl0qXxHFdVcQPfTkB6A+Hk0mDdppNMQxz70K+XFf\/GxgyIIk5wE6xHUHHvSSuDDbXmGGdCAYGt3VSz7Ly5WHRUqUsYd9UMjheleZW56Gig0pDDm5IM3OyiXqsbi7F2ymxUtIoJWazYcIPvDm8N2FnMef7JAjKO2w23KSpREzGdSzeslb4RtchDnf4wO1LsiS7P30WCuyZk3YDdggnlmizn1EscrFbe19LpB4bNXUJrb\/TdSPv5ZsHB0NDfBbzTYVPB9GM8DFIuN\/NwqqEBwISjucawKa8X+mCm7UuYRGX8se"
+}
+```
+
+This grant is suitable for clients who need logged users identification
+
+### HTTP REQUEST
+
+`POST https://api.bindeo.com/access_token`
+
+### ARGUMENTS
+
+Parameter | Type | Required | Description
+-------------- | -------------- | -------------- | --------------
+**grant_type** | string | Required | String `password`
+**client_id** | string | Required | Your client id
+**client_secret** | string | Required | Your client secret
+**username** | string | Required | Username to login with
+**password** | string | Required | User password
+
+## Refresh Token Grant
 
