@@ -108,9 +108,9 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 **locale** | string | Required | Valid locale code
 
-### Response code: `200`
+### RESPONSE
 
-### Response body: `JSON`
+<aside class="success"><b>Response code</b>: <code>200</code> | <b>Response body</b>: <code>JSON</code></aside>
 
 ## List of File Types
 
@@ -220,9 +220,9 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 **locale** | string | Required | Valid locale code
 
-### Response code: `200`
+### RESPONSE
 
-### Response body: `JSON`
+<aside class="success"><b>Response code</b>: <code>200</code> | <b>Response body</b>: <code>JSON</code></aside>
 
 ## List of Media Types
 
@@ -339,6 +339,6 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 **locale** | string | Required | Valid locale code
 
-### Response code: `200`
+### RESPONSE
 
-### Response body: `JSON`
+<aside class="success"><b>Response code</b>: <code>200</code> | <b>Response body</b>: <code>JSON</code></aside>

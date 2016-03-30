@@ -91,7 +91,7 @@ Parameter | Type | Required | Description
 **client_id** | string | Required | Your client id
 **client_secret** | string | Required | Your client secret
 
-### RESPONSE:
+### RESPONSE
 
 <aside class="success"><b>Response code</b>: <code>200</code> | <b>Response body</b>: <code>JSON</code></aside>
 
@@ -178,11 +178,9 @@ Parameter | Type | Required | Description
 **username** | string | Required | Username to login with
 **password** | string | Required | User password
 
-### RESPONSE:
+### RESPONSE
 
-**Response code**: `200`
-
-**Response body**: `JSON`
+<aside class="success"><b>Response code</b>: <code>200</code> | <b>Response body</b>: <code>JSON</code></aside>
 
 ## Refresh Token Grant
 
@@ -266,8 +264,6 @@ Parameter | Type | Required | Description
 **client_secret** | string | Required | Your client secret
 **refresh_token** | string | Required | Valid refresh token
 
-### RESPONSE:
+### RESPONSE
 
-**Response code**: `200`
-
-**Response body**: `JSON`
+<aside class="success"><b>Response code</b>: <code>200</code> | <b>Response body</b>: <code>JSON</code></aside>

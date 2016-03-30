@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - authentication
   - general_data
+  - accounts
   - errors
 
 search: true
