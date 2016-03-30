@@ -58,7 +58,7 @@ curl --request GET \
   --data '{"locale":"en_US"}'
 ```
 
-> The above command returns JSON structured like this:
+> Response JSON body example:
 
 ```json
 {
@@ -107,6 +107,10 @@ Get a list of translated Account Types
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 **locale** | string | Required | Valid locale code
+
+### Response code: `200`
+
+### Response body: `JSON`
 
 ## List of File Types
 
@@ -166,7 +170,7 @@ curl --request GET \
   --data '{"locale":"en_US"}'
 ```
 
-> The above command returns JSON structured like this:
+> Response JSON body example:
 
 ```json
 {
@@ -215,6 +219,10 @@ Get a list of translated File Types
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 **locale** | string | Required | Valid locale code
+
+### Response code: `200`
+
+### Response body: `JSON`
 
 ## List of Media Types
 
@@ -274,7 +282,7 @@ curl --request GET \
   --data '{"locale":"en_US"}'
 ```
 
-> The above command returns JSON structured like this:
+> Response JSON body example:
 
 ```json
 {
@@ -330,3 +338,7 @@ Get a list of translated Media Types
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 **locale** | string | Required | Valid locale code
+
+### Response code: `200`
+
+### Response body: `JSON`

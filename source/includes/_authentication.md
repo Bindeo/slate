@@ -67,7 +67,7 @@ curl --request POST \
   --data '{"grant_type":"client_credentials","client_id":"YOUR CLIENT ID","client_secret":"YOUR CLIENT SECRET"}'
 ```
 
-> The above command returns JSON structured like this:
+> Response JSON body example:
 
 ```json
 {
@@ -90,6 +90,10 @@ Parameter | Type | Required | Description
 **grant_type** | string | Required | String `client_credentials`
 **client_id** | string | Required | Your client id
 **client_secret** | string | Required | Your client secret
+
+### RESPONSE:
+
+<aside class="success"><b>Response code</b>: <code>200</code> | <b>Response body</b>: <code>JSON</code></aside>
 
 ## Authenticate with Password Grant
 
@@ -147,7 +151,7 @@ curl --request POST \
   --data '{"grant_type":"password","client_id":"YOUR CLIENT ID","client_secret":"YOUR CLIENT SECRET","username":"USERNAME","password":"USER PASSWORD"}'
 ```
 
-> The above command returns JSON structured like this:
+> Response JSON body example:
 
 ```json
 {
@@ -173,6 +177,12 @@ Parameter | Type | Required | Description
 **client_secret** | string | Required | Your client secret
 **username** | string | Required | Username to login with
 **password** | string | Required | User password
+
+### RESPONSE:
+
+**Response code**: `200`
+
+**Response body**: `JSON`
 
 ## Refresh Token Grant
 
@@ -230,7 +240,7 @@ curl --request POST \
   --data '{"grant_type":"refresh_token","client_id":"YOUR CLIENT ID","client_secret":"YOUR CLIENT SECRET","refresh_token":"YOUR VALID REFRESH TOKEN"}'
 ```
 
-> The above command returns JSON structured like this:
+> Response JSON body example:
 
 ```json
 {
@@ -255,3 +265,9 @@ Parameter | Type | Required | Description
 **client_id** | string | Required | Your client id
 **client_secret** | string | Required | Your client secret
 **refresh_token** | string | Required | Valid refresh token
+
+### RESPONSE:
+
+**Response code**: `200`
+
+**Response body**: `JSON`
