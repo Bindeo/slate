@@ -600,3 +600,97 @@ Parameter | Type | Required | Description
 ### RESPONSE
 
 <aside class="success"><b>Response code</b>: <code>204</code> | <b>Response body</b>: <code>empty</code></aside>
+
+## List of Account Identities
+
+> To get the list, use this code:
+
+```php
+<?php
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => "https://api.bindeo.com/account/identities",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_HTTPHEADER => array(
+    "content-type: application/json",
+    "Authorization: Bearer YOURTOKEN"
+  ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+```
+
+```python
+import requests
+
+url = "https://api.bindeo.com/account/identities"
+
+headers = {
+    'content-type': "application/json",
+    'Authorization': "Bearer YOURTOKEN"
+    }
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+```shell
+curl --request GET \
+  --url https://api.bindeo.com/account/identities \
+  --header 'content-type: application/json' \
+  --header 'Authorization: Bearer YOURTOKEN'
+```
+
+> Response JSON body example:
+
+```json
+{
+    "data": [
+        {
+            "type": "user_identities",
+            "attributes": {
+                "idIdentity": "2",
+                "idUser": "2",
+                "main": "1",
+                "type": "E",
+                "name": "Test account",
+                "value": "email@email.com",
+                "confirmed": "1",
+                "status": "A"
+            }
+        }
+    ],
+    "total_pages": 1
+}
+```
+
+Get a list of account active identities
+
+### HTTP REQUEST
+
+`GET https://api.bindeo.com/account/identities`
+
+### ARGUMENTS
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+
+### RESPONSE
+
+<aside class="success"><b>Response code</b>: <code>200</code> | <b>Response body</b>: <code>JSON</code></aside>
