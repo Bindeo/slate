@@ -9,7 +9,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.bindeo.com/general/media-types?locale=en_US",
+  CURLOPT_URL => "https://api.bindeo.com/general/account-types?locale=en_US",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -37,7 +37,7 @@ if ($err) {
 ```python
 import requests
 
-url = "https://api.bindeo.com/general/media-types"
+url = "https://api.bindeo.com/general/account-types"
 
 payload = "{\"locale\":\"en_US\"}"
 headers = {
@@ -52,7 +52,7 @@ print(response.text)
 
 ```shell
 curl --request GET \
-  --url https://api.bindeo.com/general/media-types \
+  --url https://api.bindeo.com/general/account-types \
   --header 'content-type: application/json' \
   --header 'Authorization: Bearer YOURTOKEN' \
   --data '{"locale":"en_US"}'
@@ -64,31 +64,31 @@ curl --request GET \
 {
     "data": [
         {
-            "type": "media_type",
+            "type": "account_type",
             "attributes": {
                 "idType": "1",
-                "name": "PDF"
+                "name": "Admin"
             }
         },
         {
-            "type": "media_type",
+            "type": "account_type",
             "attributes": {
                 "idType": "2",
-                "name": "Text documents"
+                "name": "Usuario gratis",
+                "maxFilesize": "3072",
+                "maxStorage": "524288",
+                "maxStampsMonth": "10"
             }
         },
         {
-            "type": "media_type",
+            "type": "account_type",
             "attributes": {
                 "idType": "3",
-                "name": "Spreadsheets"
-            }
-        },
-        {
-            "type": "media_type",
-            "attributes": {
-                "idType": "4",
-                "name": "Photos & Images"
+                "name": "Usuario premium",
+                "cost": "10",
+                "maxFilesize": "10240",
+                "maxStorage": "52428800",
+                "maxStampsMonth": "1000"
             }
         }
     ],
@@ -100,7 +100,7 @@ Get a list of translated Account Types
 
 ### HTTP REQUEST
 
-`GET https://api.bindeo.com/general/media-types`
+`GET https://api.bindeo.com/general/account-types`
 
 ### ARGUMENTS
 
