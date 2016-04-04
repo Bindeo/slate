@@ -478,7 +478,7 @@ You must replace <code>YOURTOKEN</code> with your active token.
 <span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
 
 <span class="nb">curl_setopt_array</span><span class="p">(</span><span class="nv">$curl</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
-  <span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://api.bindeo.com/general/media-types?locale=en_US"</span><span class="p">,</span>
+  <span class="nx">CURLOPT_URL</span> <span class="o">=&gt;</span> <span class="s2">"https://api.bindeo.com/general/account-types?locale=en_US"</span><span class="p">,</span>
   <span class="nx">CURLOPT_RETURNTRANSFER</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
   <span class="nx">CURLOPT_ENCODING</span> <span class="o">=&gt;</span> <span class="s2">""</span><span class="p">,</span>
   <span class="nx">CURLOPT_MAXREDIRS</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
@@ -504,7 +504,7 @@ You must replace <code>YOURTOKEN</code> with your active token.
 </code></pre>
 <pre class="highlight python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.bindeo.com/general/media-types"</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.bindeo.com/general/account-types"</span>
 
 <span class="n">payload</span> <span class="o">=</span> <span class="s">"{</span><span class="se">\"</span><span class="s">locale</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="s">en_US</span><span class="se">\"</span><span class="s">}"</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
@@ -517,7 +517,7 @@ You must replace <code>YOURTOKEN</code> with your active token.
 <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre>
 <pre class="highlight shell"><code>curl --request GET <span class="se">\</span>
-  --url https://api.bindeo.com/general/media-types <span class="se">\</span>
+  --url https://api.bindeo.com/general/account-types <span class="se">\</span>
   --header <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
   --header <span class="s1">'Authorization: Bearer YOURTOKEN'</span> <span class="se">\</span>
   --data <span class="s1">'{"locale":"en_US"}'</span>
@@ -529,31 +529,31 @@ You must replace <code>YOURTOKEN</code> with your active token.
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"media_type"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account_type"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"idType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PDF"</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Admin"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"media_type"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account_type"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"idType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Text documents"</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Usuario gratis"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxFilesize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3072"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxStorage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"524288"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxStampsMonth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"media_type"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account_type"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"idType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spreadsheets"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"media_type"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"idType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Photos &amp; Images"</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Usuario premium"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxFilesize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10240"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxStorage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"52428800"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxStampsMonth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -565,7 +565,7 @@ You must replace <code>YOURTOKEN</code> with your active token.
 
 <h3 id="http-request">HTTP REQUEST</h3>
 
-<p><code class="prettyprint">GET https://api.bindeo.com/general/media-types</code></p>
+<p><code class="prettyprint">GET https://api.bindeo.com/general/account-types</code></p>
 
 <h3 id="arguments">ARGUMENTS</h3>
 
