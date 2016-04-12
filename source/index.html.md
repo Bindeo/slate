@@ -13,6 +13,7 @@ includes:
   - authentication
   - general_data
   - accounts
+  - bulk
   - advanced
   - errors
 
