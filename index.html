@@ -1675,6 +1675,7 @@ You must replace <code>YOURTOKEN</code> with your active token.
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bulk_type"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Audit Book"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"elementsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Events"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"bulkInfo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\"title\":\"document\",\"fields\":[\"hash\",\"size\"]}"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -1708,7 +1709,7 @@ You must replace <code>YOURTOKEN</code> with your active token.
 <h2 id="open-a-new-collection">Open a New Collection</h2>
 
 <blockquote>
-<p>To open, use this code:</p>
+<p>To open (example of Event Type collection), use this code:</p>
 </blockquote>
 <pre class="highlight php"><code><span class="cp">&lt;?php</span>
 <span class="nv">$curl</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
@@ -1771,11 +1772,15 @@ You must replace <code>YOURTOKEN</code> with your active token.
 
 <p>Open a document collection to store later in Blockchain. Collections are based on Bulk Type structures defined for each client.</p>
 
+<p>Each collection may have additional parameters depending on collection Bulk Type.</p>
+
 <h3 id="http-request">HTTP REQUEST</h3>
 
 <p><code class="prettyprint">POST https://api.bindeo.com/bulk</code></p>
 
 <h3 id="arguments">ARGUMENTS</h3>
+
+<p><b>Event type</b></p>
 
 <table><thead>
 <tr>
@@ -1804,10 +1809,16 @@ You must replace <code>YOURTOKEN</code> with your active token.
 <td>Client defined identifier for this collection (max: <code class="prettyprint">64</code>)</td>
 </tr>
 <tr>
-<td><strong>additional params</strong></td>
-<td>mixed</td>
+<td><strong>hash</strong></td>
+<td>string</td>
 <td>Required</td>
-<td>Additional parameters defined for selected document collection (e.g. <code class="prettyprint">hash</code>, <code class="prettyprint">size</code>&hellip;)</td>
+<td>Hash code of the document that collection represents</td>
+</tr>
+<tr>
+<td><strong>size</strong></td>
+<td>int</td>
+<td>Required</td>
+<td>Size in bytes of the document that collection represents</td>
 </tr>
 </tbody></table>
 
