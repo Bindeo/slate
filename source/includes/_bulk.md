@@ -65,6 +65,7 @@ curl --request GET \
             "type": "bulk_type",
             "attributes": {
                 "type": "Audit Book",
+                "elementsType": "Events",
                 "bulkInfo": "{\"title\":\"document\",\"fields\":[\"hash\",\"size\"]}"
             }
         }
@@ -91,7 +92,7 @@ Parameter | Type | Required | Description
 
 ## Open a New Collection
 
-> To open, use this code:
+> To open (example of Event Type collection), use this code:
 
 ```php
 <?php
@@ -159,18 +160,23 @@ curl --request POST \
 
 Open a document collection to store later in Blockchain. Collections are based on Bulk Type structures defined for each client.
 
+Each collection may have additional parameters depending on collection Bulk Type.
+
 ### HTTP REQUEST
 
 `POST https://api.bindeo.com/bulk`
 
 ### ARGUMENTS
 
+<b>Event type</b>
+
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 **mode** | string | Required | `open`
 **type** | string | Required | Bulk type representing document collection type to be opened
 **external_id** | string | Required | Client defined identifier for this collection (max: `64`)
-**additional params** | mixed | Required | Additional parameters defined for selected document collection (e.g. `hash`, `size`...)
+**hash** | string | Required | Hash code of the document that collection represents
+**size** | int | Required | Size in bytes of the document that collection represents
 
 ### RESPONSE
 
